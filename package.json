@@ -9,6 +9,7 @@
   "author": "Shashi",
   "license": "ISC",
   "dependencies": {
+    "csvtojson": "^2.0.10",
     "mysql": "^2.18.1"
   }
 }
