@@ -34,7 +34,7 @@ CREATE TABLE  IF NOT EXISTS deliveries (
       if (err) {
         throw err;
       } else {
-        console.log("delivery table is created");
+        console.log("delivery table is created or already created");
       }
     });
     connection.end();
