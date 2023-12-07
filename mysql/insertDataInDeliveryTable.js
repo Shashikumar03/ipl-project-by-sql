@@ -33,7 +33,7 @@ async function convertCSvToJson(csvFilePath) {
       result = await insertIntoDel(deliveryObj);
     }
     console.log("all Data inserted Successfully");
-    // console.log(result);
+    console.log(result);
     connection.end();
   } catch (error) {
     throw error;

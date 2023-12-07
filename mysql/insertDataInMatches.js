@@ -2,29 +2,13 @@ const connection = require("../connection");
 const csvFilePath = "src/data/matches.csv";
 const csvtojson = require("csvtojson");
 
-async function insertIntoMatch(match) {
+async function insertIntoMatch(matchObj) {
   const dataToInsert = `INSERT INTO matches (id, season, city, date, team1, team2, toss_winner, toss_decision, result, dl_applied, winner, win_by_runs, win_by_wickets, player_of_match, venue, umpire1, umpire2, umpire3)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
-  const values = [
-    match.id,
-    match.season,
-    match.city,
-    match.date,
-    match.team1,
-    match.team2,
-    match.toss_winner,
-    match.toss_decision,
-    match.result,
-    match.dl_applied,
-    match.winner,
-    match.win_by_runs,
-    match.win_by_wickets,
-    match.player_of_match,
-    match.venue,
-    match.umpire1,
-    match.umpire2,
-    match.umpire3,
-  ];
+  const values = Object.entries(matchObj).reduce((acc, match) => {
+    acc.push(match[1]);
+    return acc;
+   },[])
 
   return new Promise((resolve, reject) => {
     connection.query(dataToInsert, values, (err, insertResults) => {
